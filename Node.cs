@@ -8,13 +8,21 @@ namespace BinarySearchTreeProj
 {
     public class Node
     {
-        public int Data;
+        public int data;
         public Node right;
         public Node left;
 
-        public Node(int data)
+        public Node(int value)
         {
-            Data = data;
+            data = value;
+        }
+
+        public int Data
+        {
+            get { return data; }
+
+            set { data = value; }
+
         }
     }
 }

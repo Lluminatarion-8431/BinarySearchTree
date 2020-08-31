@@ -6,40 +6,41 @@ using System.Threading.Tasks;
 
 namespace BinarySearchTreeProj
 {
-    class BinarySearchTree
+    public class BinarySearchTree
     {
-        public Node RootNode;
-        //public Node LastNode;
+        public Node head;
 
-        public void Add(Node nodeToAdd)
+        public void Add(int item)
         {
-            if (RootNode == null)
+            Node newNode = new Node(item);
+            if (head == null)
             {
-                RootNode = nodeToAdd;
-                //LastNode = RootNode;
+                head = newNode;
+                return;
             }
-            else
+            Node currentNode = head;
+            while (currentNode != null)
             {
-                //LastNode.NextNode = nodeToAdd;
-                //LastNode = LastNode.NextNode;
-
-                Node currentNode = RootNode;
-                while (true)
+                if (currentNode.Data == newNode.Data) break;
+                else if (currentNode.Data > newNode.Data)
                 {
-                    if (currentNode.NextNode == null)
+                    if (currentNode.left == null)
                     {
-                        currentNode.NextNode = nodeToAdd;
+                        currentNode.left = newNode;
                         break;
                     }
-                    else
-                    {
-                        currentNode = currentNode.NextNode;
-                    }
+                    currentNode = currentNode.left;
                 }
-
-
+                else if (currentNode.Data < newNode.Data)
+                {
+                    if (currentNode.right == null)
+                    {
+                        currentNode.right = newNode;
+                        break;
+                    }
+                    currentNode = currentNode.right;
+                }
             }
-
         }
     }
 }
