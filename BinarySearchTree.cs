@@ -8,39 +8,72 @@ namespace BinarySearchTreeProj
 {
     public class BinarySearchTree
     {
-        public Node head;
+        public Node rootNode;
 
         public void Add(int item)
         {
             Node newNode = new Node(item);
-            if (head == null)
+            if (rootNode == null)
             {
-                head = newNode;
+                rootNode = newNode;
                 return;
             }
-            Node currentNode = head;
+            Node currentNode = rootNode;
             while (currentNode != null)
             {
                 if (currentNode.Data == newNode.Data) break;
                 else if (currentNode.Data > newNode.Data)
                 {
-                    if (currentNode.left == null)
+                    if (currentNode.leftNode == null)
                     {
-                        currentNode.left = newNode;
+                        currentNode.leftNode = newNode;
                         break;
                     }
-                    currentNode = currentNode.left;
+                    currentNode = currentNode.leftNode;
                 }
                 else if (currentNode.Data < newNode.Data)
                 {
-                    if (currentNode.right == null)
+                    if (currentNode.rightNode == null)
                     {
-                        currentNode.right = newNode;
+                        currentNode.rightNode = newNode;
                         break;
                     }
-                    currentNode = currentNode.right;
+                    currentNode = currentNode.rightNode;
                 }
             }
+        }
+        public bool Search(int value)
+        {
+            bool found = false;
+            string directions = "";
+            Node currentNode = rootNode;
+            while (currentNode != null)
+            {
+                if (currentNode.Data == value)
+                {
+                    found = true;
+                    break;
+                }
+                else if (currentNode.Data > value)
+                {
+                    directions += currentNode.Data + " Left\n";
+                    currentNode = currentNode.leftNode;
+                }
+                else if (currentNode.Data < value)
+                {
+                    directions += currentNode.Data + " Right\n";
+                    currentNode = currentNode.rightNode;
+                }
+            }
+            if (found)
+            {
+                Console.WriteLine("Found " + value + "!!!\n" + directions);
+            }
+            else
+            {
+                Console.WriteLine("Not found.\n" + directions);
+            }
+            return found;
         }
     }
 }

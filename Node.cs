@@ -9,8 +9,8 @@ namespace BinarySearchTreeProj
     public class Node
     {
         public int data;
-        public Node right;
-        public Node left;
+        public Node rightNode;
+        public Node leftNode;
 
         public Node(int value)
         {
